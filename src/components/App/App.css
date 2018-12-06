@@ -1,0 +1,14 @@
+html {
+  font-family: 'Verdana', sans-serif;
+  background-color: #f7f7f7;
+}
+
+body {
+  margin: 20px auto;
+  padding: 0 20px 20px 20px;
+  width: 700px;
+}
+
+.App {
+  text-align: center;
+}
