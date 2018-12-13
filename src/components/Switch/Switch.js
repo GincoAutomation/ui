@@ -5,12 +5,17 @@ import './Switch.css';
 class Switch extends Component {
   render() {
     return (
-      <button>{this.props.label}</button>
+      <button
+        onClick={this.props.onClick}
+      >
+        {this.props.label}
+      </button>
     );
   }
 }
 
 Switch.propTypes = {
-  label: PropTypes.string
+  label: PropTypes.string,
+  onClick: PropTypes.func
 }
 export default Switch;
