@@ -4,8 +4,6 @@ import './App.css';
 import Switch from '../Switch/Switch'
 import Light from '../Light/Light';
 
-const serverURL = 'http://raspberrypi.local:8080';
-
 class App extends Component {
   constructor(props){
     super(props);
@@ -26,7 +24,7 @@ class App extends Component {
   }
 
   fetchState(){
-    fetch(`${serverURL}/state`)
+    fetch(`/state`)
       .then(res => res.json())
       .then(result => this.setState(result))
       .catch(error => console.error('Error:', error));
@@ -38,7 +36,7 @@ class App extends Component {
       id
     };
 
-    fetch(`${serverURL}/event`, {
+    fetch(`/event`, {
       method: 'POST', // or 'PUT'
       body: JSON.stringify(data), // data can be `string` or {object}!
       headers:{
