@@ -2,8 +2,9 @@
 
 ## Getting started
 - Install [node.js](https://nodejs.org/en/) > v10
-- Install the dependancies: `npm install`
-- Start the dev server: `npm start`
+- `npm install` Install the dependancies: 
+- `npm start` Start the dev server, with default server proxy to raspberrypi.local
+- `SERVER=local npm run start` Start the dev server, with server proxy to localhost
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Other scripts
