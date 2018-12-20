@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   fetchState(){
-    fetch(`/state`)
+    fetch(`/API/state`)
       .then(res => res.json())
       .then(result => this.setState(result))
       .catch(error => console.error('Error:', error));
@@ -36,7 +36,7 @@ class App extends Component {
       id
     };
 
-    fetch(`/event`, {
+    fetch(`/API/event`, {
       method: 'POST', // or 'PUT'
       body: JSON.stringify(data), // data can be `string` or {object}!
       headers:{
