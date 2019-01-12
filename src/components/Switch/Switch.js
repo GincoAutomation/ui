@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Switch.css';
+import styles from './Switch.module.css';
 
 class Switch extends Component {
   render() {
     return (
       <button
+        className={styles.switch}
         onClick={this.props.onClick}
       >
         {this.props.label}

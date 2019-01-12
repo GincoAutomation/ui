@@ -11,6 +11,7 @@ class About extends Component {
       APIinfo: null
     }
   }
+  
   componentDidMount() {
     this.fetchAPI();
   }

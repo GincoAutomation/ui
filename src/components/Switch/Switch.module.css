@@ -1,4 +1,4 @@
-button {
+.switch {
   background-color: #4a78db;
   color: white;
   padding: 10px 15px;
@@ -10,6 +10,6 @@ button {
   position: relative;
 }
 
-button:hover {
+.switch:hover {
   opacity: 0.8;
 }
