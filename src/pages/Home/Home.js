@@ -20,6 +20,7 @@ class Home extends Component {
       }
     }
   }
+  
   componentDidMount() {
     // Option 1) start a polling request to get the state
     // this.pollingTimer = setInterval(() => this.fetchState(), 1000);
