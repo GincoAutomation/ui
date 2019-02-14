@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { clone, setWith } from 'lodash';
 
-import Switch from '../../components/Switch/Switch'
+import Button from '../../components/Button/Button'
 import Light from '../../components/Light/Light';
 
 class Home extends Component {
@@ -20,7 +20,7 @@ class Home extends Component {
       }
     }
   }
-  
+
   componentDidMount() {
     // Option 1) start a polling request to get the state
     // this.pollingTimer = setInterval(() => this.fetchState(), 1000);
@@ -90,9 +90,9 @@ class Home extends Component {
     return (
       <div style={{textAlign: 'center'}}>
         <h1>Home Control</h1>
-        <Switch label={"Button 1"} onClick={() => this.handleButtonClick("Button1")}/>
-        <Switch label={"Button 2"} onClick={() => this.handleButtonClick("Button2")}/>
-        <Switch label={"Button 3"} onClick={() => this.handleButtonClick("Button3")}/>
+        <Button label={"Button 1"} onClick={() => this.handleButtonClick("Button1")}/>
+        <Button label={"Button 2"} onClick={() => this.handleButtonClick("Button2")}/>
+        <Button label={"Button 3"} onClick={() => this.handleButtonClick("Button3")}/>
         <br/>
         <Light color="blue" isOn={!!this.state.lights.Blue}/>
         <Light color="green" isOn={!!this.state.lights.Green}/>

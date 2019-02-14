@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './Switch.module.css';
+import styles from './Button.module.css';
 
-class Switch extends Component {
+class Button extends Component {
   render() {
     return (
       <button
@@ -15,8 +15,8 @@ class Switch extends Component {
   }
 }
 
-Switch.propTypes = {
+Button.propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func
 }
-export default Switch;
+export default Button;
