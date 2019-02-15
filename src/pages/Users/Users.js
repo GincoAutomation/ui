@@ -32,7 +32,7 @@ class Users extends Component {
               <th style={{width: '200px'}}>First Name</th>
               <th style={{width: '200px'}}>Last Name</th>
               <th style={{width: '100px'}}>Role</th>
-              <th style={{width: '100px'}}></th>
+              <th style={{width: '130px'}}></th>
             </tr>
             {this.state.users && this.state.users.map(user => (
               <UserView
