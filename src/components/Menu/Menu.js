@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
-
 import './Menu.css';
 
+var yo="logo";
+  var test= "images/"+yo+".png";
 class Menubar extends Component {
+  
   render() {
     return (
       <header>
-        <div className="logo">Ginko</div>
+       <img src="images/logo.png" alt="Logo" className="Logo"></img>
         <div className="navbar">
           <ul>
-            <li><NavLink to="/" exact activeClassName="active">Home</NavLink></li>
-            <li><NavLink to="/users" activeClassName="active">Users</NavLink></li>
-            <li><NavLink to="/about" activeClassName="active">About</NavLink></li>
+            <li><NavLink to="/" exact activeClassName="active">GINCO</NavLink></li>
+            <li><NavLink to="/rooms" activeClassName="active">Rooms</NavLink></li>
+            <li><NavLink to="/devices" activeClassName="active">Devices</NavLink></li>
+            <li><NavLink to="/actions" activeClassName="active">Actions</NavLink></li>
           </ul> 
         </div>       
       </header>

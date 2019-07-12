@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { clone, setWith } from 'lodash';
 
-import Button from '../../components/Button/Button'
+import Button from '../../components/Button/Button';
 import Light from '../../components/Light/Light';
-
+import Room from '../../components/Room/Room';
 class Home extends Component {
   constructor(props){
     super(props);
@@ -88,15 +88,11 @@ class Home extends Component {
 
   render() {
     return (
-      <div style={{textAlign: 'center'}}>
+      <div>
         <h1>Home Control</h1>
-        <Button label={"Button 1"} onClick={() => this.handleButtonClick("Button1")}/>
-        <Button label={"Button 2"} onClick={() => this.handleButtonClick("Button2")}/>
-        <Button label={"Button 3"} onClick={() => this.handleButtonClick("Button3")}/>
-        <br/>
-        <Light color="blue" isOn={!!this.state.lights.Blue}/>
-        <Light color="green" isOn={!!this.state.lights.Green}/>
-        <Light color="yellow" isOn={!!this.state.lights.Yellow}/>
+         <div>
+       <Room toggles={["Verlichting","Verluchting"]} name="Living"></Room>
+        </div>
       </div>
     );
   }
