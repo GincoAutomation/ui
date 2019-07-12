@@ -1,0 +1,59 @@
+p.room{
+    color: #262833;
+    float:right;
+    margin-top: 0px;
+    margin-right: 90px;
+}
+p.debugState{
+    float:left;
+    margin:15px;
+
+}
+p.roomName{
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    text-align: left;
+    margin-bottom: 0;
+    margin-top: 5px;
+
+}
+p.type{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 100;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 20px;
+
+
+}
+table{
+
+}
+img.Icon{
+    margin-right:0px;
+    margin-left:0px;
+
+    width: 70px;
+}
+th.left{
+    background-color: #96a0fa;
+    border-top-left-radius: 10px;
+    width: 90px;
+}
+th.rigth{
+    background-color: #96a0fa;
+    border-top-right-radius: 10px;
+}
+ul.buttonList{
+    width: 290px;
+    background-color: #e1e3fa;
+    list-style-type:none;
+    padding-left:10px;
+    padding-top: 10px;
+    margin:0;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
