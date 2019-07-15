@@ -46,7 +46,7 @@ class ToggleSwitch extends Component {
   }
   render(){
     return(
-      <label>
+      <label style={{float:'left'}} >
           <Switch checked={this.state.checked}
               onChange={this.handleChange}
               onColor= {this.getStyle(this.props.style).onColor}

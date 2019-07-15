@@ -4,6 +4,7 @@ import { clone, setWith } from 'lodash';
 import Button from '../../components/Button/Button';
 import Light from '../../components/Light/Light';
 import Room from '../../components/Room/Room';
+import Device from '../../components/Device/Device';
 class Home extends Component {
   constructor(props){
     super(props);
@@ -92,6 +93,8 @@ class Home extends Component {
         <h1>Home Control</h1>
          <div>
        <Room toggles={["Verlichting","Verluchting"]} name="Living"></Room>
+       <Device toggles={["Lamp","Lees"]} name="Staande lamp" roomName="Living" type="floor_lamp"></Device>
+       <Device toggles={["Lamp"]} name="Hoofd Luster" roomName="Keuken" type="ceiling_light"></Device>
         </div>
       </div>
     );
