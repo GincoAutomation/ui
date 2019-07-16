@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 import './Menu.css';
+import styled from 'styled-components'
 
-var yo="logo";
-  var test= "images/"+yo+".png";
+
 class Menubar extends Component {
   
   render() {

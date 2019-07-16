@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { clone, setWith } from 'lodash';
-
-import Button from '../../components/Button/Button';
-import Light from '../../components/Light/Light';
 import Room from '../../components/Room/Room';
 import Device from '../../components/Device/Device';
+import Action from '../../components/Action/Action';
+
+
 class Home extends Component {
   constructor(props){
     super(props);
@@ -85,8 +85,9 @@ class Home extends Component {
       .catch(error => console.error('Error:', error));
 
   }
-
-
+  notifyClick(name){
+    console.log(name+" is clicked read from home")
+  }
   render() {
     return (
       <div>
@@ -95,6 +96,7 @@ class Home extends Component {
        <Room toggles={["Verlichting","Verluchting"]} name="Living"></Room>
        <Device toggles={["Lamp","Lees"]} name="Staande lamp" roomName="Living" type="floor_lamp"></Device>
        <Device toggles={["Lamp"]} name="Hoofd Luster" roomName="Keuken" type="ceiling_light"></Device>
+       <Action name="Movie" subtext="Film kijken" notifyClick={(name)=>this.notifyClick(name) }></Action>
         </div>
       </div>
     );
