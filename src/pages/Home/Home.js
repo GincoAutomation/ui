@@ -100,8 +100,9 @@ class Home extends Component {
       .catch(error => console.error('Error:', error));
 
   }
-  notifyChange(id){
-    console.log(name+" is clicked read from home");
+  //implement changes to any of the UI elements
+  notifyChange(changeInfo){
+    console.log(JSON.stringify(changeInfo));
   }
   render() {
     const renderCards= () => {
@@ -110,7 +111,7 @@ class Home extends Component {
       //Rooms
       const roomsArr=Object.values(Object.values(testHome)[0]);
       roomsArr.map((room,number) => {
-        const r=<Item key={order}><Room toggles={room.toggles} name={room.name} notifyChange={(id) => this.notifyChange(id)}></Room></Item>;
+        const r=<Item key={order}><Room toggles={room.toggles} name={room.name} notifyChange={(changeInfo) => this.notifyChange(changeInfo)}></Room></Item>;
         console.log("Rooms ordernumber= " + order);
         cards.push(r);
         order++;
@@ -118,7 +119,7 @@ class Home extends Component {
       //Devices
       const devArr=Object.values(Object.values(testHome)[1]);
       devArr.map((device,number) => {
-        const d=<Item key={order}><Device toggles={device.toggles} name={device.name} roomName={device.roomName} type={device.type}></Device></Item>;
+        const d=<Item key={order}><Device toggles={device.toggles} name={device.name} roomName={device.roomName} type={device.type} notifyChange={(changeInfo) => this.notifyChange(changeInfo)}></Device></Item>;
         console.log("Devices ordernumber= " + order);
         cards.push(d);
         order++;
@@ -126,7 +127,7 @@ class Home extends Component {
       //Actions
       const actArr=Object.values(Object.values(testHome)[2]);
       actArr.map((action,number) => {
-        const a=<Item key={order}><Action name={action.name} subtext={action.subtext}></Action></Item>;
+        const a=<Item key={order}><Action name={action.name} subtext={action.subtext} notifyChange={(changeInfo) => this.notifyChange(changeInfo)}></Action></Item>;
         console.log("Actions ordernumber= " + order);
         cards.push(a);
         order++;

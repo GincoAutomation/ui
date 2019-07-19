@@ -47,11 +47,24 @@ const P=styled.p`
 }
 `
 class Action extends Component {
-
-    handleButtonClick(){
-        this.props.notifyClick(this.props.name);
+    constructor(props){
+        super(props);
+        this.state = {
+            countUI:0,  
+        };
     }
 
+    handleButtonClick(){
+        this.setState({countUI: this.state.countUI+1,});        
+        const changeInfo={
+            room: "N/A",
+            type: "ActionEvent",
+            UIName: this.props.name ,
+            value: "Clicked",
+            UICount: this.state.countUI,
+        };
+        this.props.notifyChange(changeInfo);
+    }
     render(){
         return(
             <div>

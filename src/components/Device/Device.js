@@ -90,9 +90,17 @@ class Device extends Component {
     }
     // Change of toggle switch 
     notifyChangeToggle(id,count){
+        const changeInfo={
+            room: this.props.roomName,
+            type: "toggleEvent",
+            UIName: this.props.name + this.props.toggles[id] ,
+            value: !this.state.toggleState[id],
+            UICount: count,
+        };
+        this.props.notifyChange(changeInfo);
         var path="toggleState["+id+"]";
         this.setState((state) => set(state, path, !this.state.toggleState[id]));
-        console.log("The given id is: "+id+" toggleCount: "+count);
+        
       }
 
     render(){

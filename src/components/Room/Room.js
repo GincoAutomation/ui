@@ -87,18 +87,36 @@ class Room extends Component {
         this.state = {
             toggleState: Array(this.props.toggles.length).fill(false),
             temperature:20,
+            sliderUIcount:0,
         };
     }
     // Change of toggle switch 
     notifyChangeToggle(id,count){
+        const changeInfo={
+            room: this.props.name,
+            type: "toggleEvent",
+            UIName: this.props.toggles[id],
+            value: !this.state.toggleState[id],
+            UICount: count,
+        };
+        this.props.notifyChange(changeInfo);
         var path="toggleState["+id+"]";
         this.setState((state) => set(state, path, !this.state.toggleState[id]));
-        console.log("The given id is: "+id+" toggleCount: "+count);
+  
       }
+
     // Change of Temperature Slider 
       notifyChangeSlider(id,value){
         this.setState({temperature: value});
+        const changeInfo={
+            room: this.props.name,
+            type: "sliderEvent",
+            UIName: "TempSlider",
+            value: value,            
+        };
+        this.props.notifyChange(changeInfo);
       }
+      
 
     render(){
         const toggles=this.props.toggles;
