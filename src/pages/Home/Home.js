@@ -3,7 +3,22 @@ import { clone, setWith } from 'lodash';
 import Room from '../../components/Room/Room';
 import Device from '../../components/Device/Device';
 import Action from '../../components/Action/Action';
-
+import thisHome from '../../data/testHome';
+import testHome from '../../data/testHome';
+import styled from 'styled-components'
+//styles
+const Container=styled.div`
+  border: 1px  #ffffff solid;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  float: rigth;
+`
+const Item=styled.div`
+ margin: 10px;
+ flex-shrink: 0;
+ align-self: flex-start
+`
 
 class Home extends Component {
   constructor(props){
@@ -85,19 +100,44 @@ class Home extends Component {
       .catch(error => console.error('Error:', error));
 
   }
-  notifyClick(name){
-    console.log(name+" is clicked read from home")
+  notifyChange(id){
+    console.log(name+" is clicked read from home");
   }
   render() {
+    const renderCards= () => {
+      var order=1;
+      const cards =[];
+      //Rooms
+      const roomsArr=Object.values(Object.values(testHome)[0]);
+      roomsArr.map((room,number) => {
+        const r=<Item key={order}><Room toggles={room.toggles} name={room.name} notifyChange={(id) => this.notifyChange(id)}></Room></Item>;
+        console.log("Rooms ordernumber= " + order);
+        cards.push(r);
+        order++;
+      });
+      //Devices
+      const devArr=Object.values(Object.values(testHome)[1]);
+      devArr.map((device,number) => {
+        const d=<Item key={order}><Device toggles={device.toggles} name={device.name} roomName={device.roomName} type={device.type}></Device></Item>;
+        console.log("Devices ordernumber= " + order);
+        cards.push(d);
+        order++;
+      });
+      //Actions
+      const actArr=Object.values(Object.values(testHome)[2]);
+      actArr.map((action,number) => {
+        const a=<Item key={order}><Action name={action.name} subtext={action.subtext}></Action></Item>;
+        console.log("Actions ordernumber= " + order);
+        cards.push(a);
+        order++;
+      });
+      return cards;
+    }
     return (
       <div>
-        <h1>Home Control</h1>
-         <div>
-       <Room toggles={["Verlichting","Verluchting"]} name="Living"></Room>
-       <Device toggles={["Lamp","Lees"]} name="Staande lamp" roomName="Living" type="floor_lamp"></Device>
-       <Device toggles={["Lamp"]} name="Hoofd Luster" roomName="Keuken" type="ceiling_light"></Device>
-       <Action name="Movie" subtext="Film kijken" notifyClick={(name)=>this.notifyClick(name) }></Action>
-        </div>
+         <Container>
+         {renderCards()}
+         </Container>
       </div>
     );
   }
