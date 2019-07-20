@@ -30,6 +30,10 @@ margin:0;
 border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px;
 `
+const Li=styled.li`
+padding-top:5px;
+padding-bottom: 5px;
+`
 const Icon=styled.img`
 margin-right:0px;
 margin-left:0px;
@@ -107,9 +111,9 @@ class Device extends Component {
         const toggles=this.props.toggles;
         const toggleList= toggles.map((toggle,number) => {
             return (
-                <li key={number}>
+                <Li key={number}>
                   <ToggleSwitch id={number} notifyChangeToggle={(id,count)=>this.notifyChangeToggle(id,count) } style="device"/><P className="item">{toggle}</P>     
-                </li>
+                </Li>
               );
         });
         return(

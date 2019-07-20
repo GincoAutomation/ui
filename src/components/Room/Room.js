@@ -35,6 +35,10 @@ margin-right:0px;
 margin-left:0px;
 width: 70px;
 `
+const Li=styled.li`
+padding-top:5px;
+padding-bottom: 5px;
+`
 const P=styled.p`
 &.item{
     font-size: 25px;
@@ -76,8 +80,6 @@ const P=styled.p`
     text-align: left;
     margin-top: 5px;
     margin-bottom: 20px;
-
-
 }
 `
 //implementation
@@ -122,10 +124,9 @@ class Room extends Component {
         const toggles=this.props.toggles;
         const toggleList= toggles.map((toggle,number) => {
             return (
-                <li key={number}>
+                <Li key={number}>
                   <ToggleSwitch id={number} notifyChangeToggle={(id,count)=>this.notifyChangeToggle(id,count) } style="room"/><P className="item">{toggle}</P>
-                  <P className="debugState">{"current state: "+ this.state.toggleState[number]}</P>
-                </li>
+                </Li>
               );
         });
         return(
@@ -144,10 +145,10 @@ class Room extends Component {
             <ButtonList >
                 {toggleList}
                 
-                <li>
+                <Li>
                     <P className="slider">{'Verwarming: '+this.state.temperature+'°C'}</P>
                     <RoomSlider id='TempSlider' notifyChangeSlider={(id,value)=>this.notifyChangeSlider(id,value) } />    
-                </li>   
+                </Li>   
             </ButtonList>
             
         </div>

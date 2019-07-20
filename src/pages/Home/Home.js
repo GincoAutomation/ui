@@ -3,21 +3,22 @@ import { clone, setWith } from 'lodash';
 import Room from '../../components/Room/Room';
 import Device from '../../components/Device/Device';
 import Action from '../../components/Action/Action';
-import thisHome from '../../data/testHome';
 import testHome from '../../data/testHome';
 import styled from 'styled-components'
 //styles
 const Container=styled.div`
+  width:
   border: 1px  #ffffff solid;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  float: rigth;
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: repeat(auto-fill, 300px);
+  
+  align-content: stretch;
+  grid-auto-flow: dense;
+
 `
 const Item=styled.div`
- margin: 10px;
- flex-shrink: 0;
- align-self: flex-start
+justify-self: stretch;
 `
 
 class Home extends Component {
