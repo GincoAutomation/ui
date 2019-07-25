@@ -6,7 +6,8 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:prettier/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -20,7 +21,8 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "settings": {
         "react": {
@@ -30,6 +32,7 @@ module.exports = {
     },
     "rules": {
         "no-console": "off",
-        "no-empty": ["error", { "allowEmptyCatch": true }]
+        "no-empty": ["error", { "allowEmptyCatch": true }],
+        "prettier/prettier": "error"
     }
 };
