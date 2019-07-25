@@ -20,6 +20,9 @@
 - start the development server (`npm start`)
 - In the debug tab of VSCode select the 'Chrome' launch configuration and press 'Start Debugging' (Green arrow)
 
+## Misc
+- If you're using VSCode: install the [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and enable the setting `"eslint.autoFixOnSave": true`
+
 ## Resources
 - To learn React, check out the [React documentation](https://reactjs.org/)
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
