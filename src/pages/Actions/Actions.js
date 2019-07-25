@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { clone, setWith } from 'lodash';
-import Room from '../../components/Room/Room';
-import Device from '../../components/Device/Device';
 import Action from '../../components/Action/Action';
 import testHome from '../../data/testHome';
 import styled from 'styled-components'
@@ -44,7 +42,7 @@ class Actions extends Component {
       try {
         event = JSON.parse(message.data);
         console.log("ws received", event);
-      } catch {
+      } catch(err) {
         console.log("ws received message is not a json: ", message.data)
       }
       if (event && event.type === 'stateChange'){
@@ -102,7 +100,7 @@ class Actions extends Component {
       const cards =[];
       //Actions
       const actArr=Object.values(Object.values(testHome)[2]);
-      actArr.map((action,number) => {
+      actArr.map((action) => {
         const a=<Item key={order}><Action name={action.name} subtext={action.subtext} notifyChange={(changeInfo) => this.notifyChange(changeInfo)}></Action></Item>;
         console.log("Actions ordernumber= " + order);
         cards.push(a);

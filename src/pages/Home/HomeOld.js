@@ -36,7 +36,7 @@ class Home extends Component {
       try {
         event = JSON.parse(message.data);
         console.log("ws received", event);
-      } catch {
+      } catch(err) {
         console.log("ws received message is not a json: ", message.data)
       }
       if (event && event.type === 'stateChange'){

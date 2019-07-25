@@ -42,7 +42,7 @@ class Devices extends Component {
       try {
         event = JSON.parse(message.data);
         console.log("ws received", event);
-      } catch {
+      } catch(err) {
         console.log("ws received message is not a json: ", message.data)
       }
       if (event && event.type === 'stateChange'){
@@ -101,7 +101,7 @@ class Devices extends Component {
       
       //Devices
       const devArr=Object.values(Object.values(testHome)[1]);
-      devArr.map((device,number) => {
+      devArr.map((device) => {
         const d=<Item key={order}><Device toggles={device.toggles} name={device.name} roomName={device.roomName} type={device.type} notifyChange={(changeInfo) => this.notifyChange(changeInfo)}></Device></Item>;
         console.log("Devices ordernumber= " + order);
         cards.push(d);

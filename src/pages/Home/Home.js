@@ -53,7 +53,7 @@ class Home extends Component {
       try {
         event = JSON.parse(message.data);
         console.log("ws received", event);
-      } catch {
+      } catch(err) {
         console.log("ws received message is not a json: ", message.data)
       }
       if (event && event.type === 'stateChange'){
@@ -111,7 +111,7 @@ class Home extends Component {
       const cards =[];
       //Rooms
       const roomsArr=Object.values(Object.values(testHome)[0]);
-      roomsArr.map((room,number) => {
+      roomsArr.map((room) => {
         const r=<Item key={order}><Room toggles={room.toggles} name={room.name} notifyChange={(changeInfo) => this.notifyChange(changeInfo)}></Room></Item>;
         console.log("Rooms ordernumber= " + order);
         cards.push(r);
@@ -119,7 +119,7 @@ class Home extends Component {
       });
       //Devices
       const devArr=Object.values(Object.values(testHome)[1]);
-      devArr.map((device,number) => {
+      devArr.map((device) => {
         const d=<Item key={order}><Device toggles={device.toggles} name={device.name} roomName={device.roomName} type={device.type} notifyChange={(changeInfo) => this.notifyChange(changeInfo)}></Device></Item>;
         console.log("Devices ordernumber= " + order);
         cards.push(d);
@@ -127,7 +127,7 @@ class Home extends Component {
       });
       //Actions
       const actArr=Object.values(Object.values(testHome)[2]);
-      actArr.map((action,number) => {
+      actArr.map((action) => {
         const a=<Item key={order}><Action name={action.name} subtext={action.subtext} notifyChange={(changeInfo) => this.notifyChange(changeInfo)}></Action></Item>;
         console.log("Actions ordernumber= " + order);
         cards.push(a);

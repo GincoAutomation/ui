@@ -157,6 +157,7 @@ class Room extends Component {
 }
 Room.propTypes ={
     toggles: PropTypes.array,
-    name: PropTypes.string
+    name: PropTypes.string,
+    notifyChange:PropTypes.func
 }
 export default Room;

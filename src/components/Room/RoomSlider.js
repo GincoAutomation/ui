@@ -1,9 +1,10 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
+import PropTypes from 'prop-types';
 
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: 280,
     
@@ -37,7 +38,7 @@ const CustomSlider = withStyles({
 
  function RoomSlider(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(20);
+  const [, setValue] = React.useState(20);
   const handleChange = (event, newValue) => {
     setValue(newValue);
     props.notifyChangeSlider(props.id,newValue);
@@ -47,5 +48,9 @@ const CustomSlider = withStyles({
       <CustomSlider  aria-label="Pretto slider" defaultValue={20} onChange={handleChange}  min={8} max={45}/> 
     </div>
   );
+}
+RoomSlider.propTypes ={
+  notifyChangeSlider:PropTypes.func,
+  id: PropTypes.string
 }
 export default RoomSlider;

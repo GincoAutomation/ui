@@ -84,6 +84,7 @@ class Action extends Component {
 }
 Action.propTypes ={
     name: PropTypes.string,
-    subtext: PropTypes.string
+    subtext: PropTypes.string,
+    notifyChange: PropTypes.func
 }
 export default Action;

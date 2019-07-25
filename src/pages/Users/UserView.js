@@ -90,11 +90,14 @@ class UserView extends Component {
   }
 }
 
-User.propTypes = {
+UserView.propTypes = {
   user: PropTypes.shape({
+    _id:PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
-    role: PropTypes.string
+    role: PropTypes.string,
+    save:PropTypes.func,
+    delete:PropTypes.func
   }),
   refreshList: PropTypes.func,
 }

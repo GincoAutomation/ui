@@ -140,6 +140,8 @@ class Device extends Component {
 Device.propTypes ={
     toggles: PropTypes.array,
     name: PropTypes.string,
-    roomName: PropTypes.string
+    roomName: PropTypes.string,
+    notifyChange:PropTypes.func,
+    type: PropTypes.string
 }
 export default Device;

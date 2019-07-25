@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Switch from "react-switch";
- 
+import PropTypes from 'prop-types';
+
 class ToggleSwitch extends Component {
   constructor(props){
     super(props);
@@ -65,5 +66,10 @@ class ToggleSwitch extends Component {
   </label>
     )
   }
+}
+ToggleSwitch.propTypes ={
+  notifyChangeToggle:PropTypes.func,
+  id: PropTypes.string,
+  style: PropTypes.string
 }
 export default ToggleSwitch;
