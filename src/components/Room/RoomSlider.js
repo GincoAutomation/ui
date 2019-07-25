@@ -3,17 +3,15 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import PropTypes from 'prop-types';
 
-
 const useStyles = makeStyles(() => ({
   root: {
-    width: 280,
-    
-  },
+    width: 280
+  }
 }));
 const CustomSlider = withStyles({
   root: {
     color: '#96a0fa',
-    height: 2,
+    height: 2
   },
   thumb: {
     height: 25,
@@ -22,35 +20,35 @@ const CustomSlider = withStyles({
     marginTop: -10,
     marginLeft: -12,
     '&:focus,&:hover,&$active': {
-      boxShadow: 'inherit',
-    },
+      boxShadow: 'inherit'
+    }
   },
   active: {},
   track: {
     height: 5,
-    borderRadius: 3,
+    borderRadius: 3
   },
   rail: {
     height: 5,
-    borderRadius: 3,
-  },
+    borderRadius: 3
+  }
 })(Slider);
 
- function RoomSlider(props) {
+function RoomSlider(props) {
   const classes = useStyles();
   const [, setValue] = React.useState(20);
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    props.notifyChangeSlider(props.id,newValue);
+    props.notifyChangeSlider(props.id, newValue);
   };
   return (
-    <div className={classes.root}>  
-      <CustomSlider  aria-label="Pretto slider" defaultValue={20} onChange={handleChange}  min={8} max={45}/> 
+    <div className={classes.root}>
+      <CustomSlider aria-label="Pretto slider" defaultValue={20} onChange={handleChange} min={8} max={45} />
     </div>
   );
 }
-RoomSlider.propTypes ={
-  notifyChangeSlider:PropTypes.func,
+RoomSlider.propTypes = {
+  notifyChangeSlider: PropTypes.func,
   id: PropTypes.string
-}
+};
 export default RoomSlider;

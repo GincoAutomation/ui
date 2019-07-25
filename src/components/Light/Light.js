@@ -5,9 +5,9 @@ import './Light.css';
 class Light extends Component {
   render() {
     return (
-      <div 
+      <div
         className="light"
-        style={{ 
+        style={{
           backgroundColor: this.props.color,
           opacity: this.props.isOn ? 1.0 : 0.1
         }}
@@ -19,5 +19,5 @@ class Light extends Component {
 Light.propTypes = {
   color: PropTypes.string,
   isOn: PropTypes.bool
-}
+};
 export default Light;

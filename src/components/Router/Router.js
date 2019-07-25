@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from 'react-router-dom';
 
 import Home from '../../pages/Home/Home';
 import Rooms from '../../pages/Rooms/Rooms';
 import Devices from '../../pages/Devices/Devices';
 import Actions from '../../pages/Actions/Actions';
-
 
 class Router extends Component {
   render() {
