@@ -21,7 +21,11 @@
 - In the debug tab of VSCode select the 'Chrome' launch configuration and press 'Start Debugging' (Green arrow)
 
 ## Misc
-- If you're using VSCode: install the [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and enable the setting `"eslint.autoFixOnSave": true`
+- If you're using VSCode: install the [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and enable the setting 
+```
+    "eslint.autoFixOnSave": true,
+    "eslint.run": "onSave",
+```
 
 ## Resources
 - To learn React, check out the [React documentation](https://reactjs.org/)
