@@ -5,10 +5,7 @@ import styles from './Button.module.css';
 class Button extends Component {
   render() {
     return (
-      <button
-        className={styles.switch}
-        onClick={this.props.onClick}
-      >
+      <button className={styles.switch} onClick={this.props.onClick}>
         {this.props.label}
       </button>
     );
@@ -18,5 +15,5 @@ class Button extends Component {
 Button.propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func
-}
+};
 export default Button;
