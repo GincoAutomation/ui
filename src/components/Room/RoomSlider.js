@@ -36,9 +36,8 @@ const CustomSlider = withStyles({
 
 function RoomSlider(props) {
   const classes = useStyles();
-  const [, setValue] = React.useState(20);
+  const [] = React.useState(20);
   const handleChange = (event, newValue) => {
-    setValue(newValue);
     props.notifyChangeSlider(props.id, newValue);
   };
   return (

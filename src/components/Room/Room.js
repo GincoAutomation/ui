@@ -91,17 +91,16 @@ class Room extends Component {
     };
   }
   // Change of toggle switch
-  notifyChangeToggle(id, count) {
+  notifyChangeToggle(arrIndex) {
     const changeInfo = {
       room: this.props.name,
       type: 'toggleEvent',
-      UIName: this.props.toggles[id],
-      value: !this.state.toggleState[id],
-      UICount: count
+      UIName: this.props.toggles[arrIndex],
+      value: !this.state.toggleState[arrIndex]
     };
     this.props.notifyChange(changeInfo);
-    var path = 'toggleState[' + id + ']';
-    this.setState(state => set(state, path, !this.state.toggleState[id]));
+    var path = 'toggleState[' + arrIndex + ']';
+    this.setState(state => set(state, path, !this.state.toggleState[arrIndex]));
   }
 
   // Change of Temperature Slider
@@ -118,18 +117,17 @@ class Room extends Component {
 
   render() {
     const toggles = this.props.toggles;
-    const toggleList = toggles.map((toggle, number) => {
-      return (
-        <Li key={number}>
-          <ToggleSwitch
-            id={number}
-            notifyChangeToggle={(id, count) => this.notifyChangeToggle(id, count)}
-            style="room"
-          />
-          <P className="item">{toggle}</P>
-        </Li>
-      );
-    });
+    const toggleList = toggles.map((toggle, number) => (
+      <Li key={'roomToggle_' + toggle}>
+        <ToggleSwitch
+          id={'roomToggle_' + number}
+          notifyChangeToggle={(id, count) => this.notifyChangeToggle(id, count)}
+          styleID="room"
+          arrIndex={number}
+        />
+        <P className="item">{toggle}</P>
+      </Li>
+    ));
     return (
       <div>
         <Table>

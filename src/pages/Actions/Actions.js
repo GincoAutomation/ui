@@ -23,6 +23,7 @@ class Actions extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.notifyChange = this.notifyChange.bind(this);
   }
 
   componentDidMount() {
@@ -94,30 +95,15 @@ class Actions extends Component {
     console.log(JSON.stringify(changeInfo));
   }
   render() {
-    const renderCards = () => {
-      var order = 1;
-      const cards = [];
-      //Actions
-      const actArr = Object.values(Object.values(testHome)[2]);
-      actArr.map(action => {
-        const a = (
-          <Item key={order}>
-            <Action
-              name={action.name}
-              subtext={action.subtext}
-              notifyChange={changeInfo => this.notifyChange(changeInfo)}
-            ></Action>
-          </Item>
-        );
-        console.log('Actions ordernumber= ' + order);
-        cards.push(a);
-        order++;
-      });
-      return cards;
-    };
     return (
       <div>
-        <Container>{renderCards()}</Container>
+        <Container>
+          {Object.entries(testHome.actions).map(([key, action]) => (
+            <Item key={key}>
+              <Action name={action.name} subtext={action.subtext} notifyChange={this.notifyChange}></Action>
+            </Item>
+          ))}
+        </Container>
       </div>
     );
   }

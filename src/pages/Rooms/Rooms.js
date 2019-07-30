@@ -23,6 +23,7 @@ class Rooms extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.notifyChange = this.notifyChange.bind(this);
   }
 
   componentDidMount() {
@@ -93,31 +94,15 @@ class Rooms extends Component {
     console.log(JSON.stringify(changeInfo));
   }
   render() {
-    const renderCards = () => {
-      var order = 1;
-      const cards = [];
-      //Rooms
-      const roomsArr = Object.values(Object.values(testHome)[0]);
-      roomsArr.map(room => {
-        const r = (
-          <Item key={order}>
-            <Room
-              toggles={room.toggles}
-              name={room.name}
-              notifyChange={changeInfo => this.notifyChange(changeInfo)}
-            ></Room>
-          </Item>
-        );
-        console.log('Rooms ordernumber= ' + order);
-        cards.push(r);
-        order++;
-      });
-
-      return cards;
-    };
     return (
       <div>
-        <Container>{renderCards()}</Container>
+        <Container>
+          {Object.entries(testHome.rooms).map(([key, room]) => (
+            <Item key={key}>
+              <Room toggles={room.toggles} name={room.name} notifyChange={this.notifyChange} />
+            </Item>
+          ))}
+        </Container>
       </div>
     );
   }

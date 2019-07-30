@@ -36,6 +36,7 @@ class Home extends Component {
         Yellow: 0
       }
     };
+    this.notifyChange = this.notifyChange.bind(this);
   }
 
   componentDidMount() {
@@ -111,52 +112,41 @@ class Home extends Component {
       var order = 1;
       const cards = [];
       //Rooms
-      const roomsArr = Object.values(Object.values(testHome)[0]);
-      roomsArr.map(room => {
+      const roomsArr = Object.values(testHome.rooms);
+      roomsArr.forEach(room => {
         const r = (
-          <Item key={order}>
-            <Room
-              toggles={room.toggles}
-              name={room.name}
-              notifyChange={changeInfo => this.notifyChange(changeInfo)}
-            ></Room>
+          <Item key={room.name + '_' + order}>
+            <Room toggles={room.toggles} name={room.name} notifyChange={this.notifyChange}></Room>
           </Item>
         );
-        console.log('Rooms ordernumber= ' + order);
         cards.push(r);
         order++;
       });
       //Devices
-      const devArr = Object.values(Object.values(testHome)[1]);
-      devArr.map(device => {
+      const devArr = Object.values(testHome.devices);
+      devArr.forEach(device => {
         const d = (
-          <Item key={order}>
+          <Item key={device.roomName + '_' + device.type + '_' + order}>
             <Device
               toggles={device.toggles}
               name={device.name}
               roomName={device.roomName}
               type={device.type}
-              notifyChange={changeInfo => this.notifyChange(changeInfo)}
+              notifyChange={this.notifyChange}
             ></Device>
           </Item>
         );
-        console.log('Devices ordernumber= ' + order);
         cards.push(d);
         order++;
       });
       //Actions
-      const actArr = Object.values(Object.values(testHome)[2]);
-      actArr.map(action => {
+      const actArr = Object.values(testHome.actions);
+      actArr.forEach(action => {
         const a = (
-          <Item key={order}>
-            <Action
-              name={action.name}
-              subtext={action.subtext}
-              notifyChange={changeInfo => this.notifyChange(changeInfo)}
-            ></Action>
+          <Item key={action.name}>
+            <Action name={action.name} subtext={action.subtext} notifyChange={this.notifyChange}></Action>
           </Item>
         );
-        console.log('Actions ordernumber= ' + order);
         cards.push(a);
         order++;
       });

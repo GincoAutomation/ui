@@ -41,15 +41,15 @@ export default {
   },
   actions: {
     movie: {
-      name: 'Movie',
+      name: 'Film',
       subtext: 'Film kijken'
     },
     sleep: {
-      name: 'Sleep',
+      name: 'Slapen',
       subtext: 'Gaan slapen'
     },
     leave: {
-      name: 'Leave',
+      name: 'Verlaten',
       subtext: 'Huis verlaten'
     }
   }

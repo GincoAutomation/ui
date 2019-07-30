@@ -23,6 +23,7 @@ class Devices extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.notifyChange = this.notifyChange.bind(this);
   }
 
   componentDidMount() {
@@ -94,34 +95,21 @@ class Devices extends Component {
     console.log(JSON.stringify(changeInfo));
   }
   render() {
-    const renderCards = () => {
-      var order = 1;
-      const cards = [];
-
-      //Devices
-      const devArr = Object.values(Object.values(testHome)[1]);
-      devArr.map(device => {
-        const d = (
-          <Item key={order}>
-            <Device
-              toggles={device.toggles}
-              name={device.name}
-              roomName={device.roomName}
-              type={device.type}
-              notifyChange={changeInfo => this.notifyChange(changeInfo)}
-            ></Device>
-          </Item>
-        );
-        console.log('Devices ordernumber= ' + order);
-        cards.push(d);
-        order++;
-      });
-
-      return cards;
-    };
     return (
       <div>
-        <Container>{renderCards()}</Container>
+        <Container>
+          {Object.entries(testHome.devices).map(([key, device]) => (
+            <Item key={key}>
+              <Device
+                toggles={device.toggles}
+                name={device.name}
+                roomName={device.roomName}
+                type={device.type}
+                notifyChange={this.notifyChange}
+              ></Device>
+            </Item>
+          ))}
+        </Container>
       </div>
     );
   }

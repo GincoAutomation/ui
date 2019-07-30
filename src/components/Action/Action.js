@@ -9,6 +9,7 @@ const Table = styled.table`
   height: 100px;
   border-radius: 10px;
   :hover {
+    cursor: pointer;
     background-color: #f86d6d;
     box-shadow: 0 4px 8px 0 rgba(250, 150, 150, 0.2), 0 6px 20px 0 rgba(250, 150, 150, 0.19);
   }
@@ -48,19 +49,14 @@ const P = styled.p`
 class Action extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      countUI: 0
-    };
   }
 
   handleButtonClick() {
-    this.setState({ countUI: this.state.countUI + 1 });
     const changeInfo = {
       room: 'N/A',
       type: 'ActionEvent',
       UIName: this.props.name,
-      value: 'Clicked',
-      UICount: this.state.countUI
+      value: 'Clicked'
     };
     this.props.notifyChange(changeInfo);
   }

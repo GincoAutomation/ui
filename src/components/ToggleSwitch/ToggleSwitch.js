@@ -6,18 +6,17 @@ class ToggleSwitch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false,
-      toggleCount: 0
+      checked: false
     };
     this.handleChange = this.handleChange.bind(this);
   }
   //calls notifyChange function on parent
   handleChange(checked) {
-    this.setState({ checked, toggleCount: this.state.toggleCount + 1 });
-    this.props.notifyChangeToggle(this.props.id, this.state.toggleCount);
+    this.setState({ checked });
+    this.props.notifyChangeToggle(this.props.arrIndex);
   }
   //return the right colors for button component
-  getStyle(style) {
+  getStyle(styleID) {
     var colors = {
       onColor: null,
       onHandleColor: null,
@@ -25,7 +24,7 @@ class ToggleSwitch extends Component {
       offHandleColor: null
     };
     //add style here
-    switch (style) {
+    switch (styleID) {
       case 'room':
         colors = {
           onColor: '#96a0fa',
@@ -42,6 +41,8 @@ class ToggleSwitch extends Component {
           offHandleColor: '#666666'
         };
         break;
+      default:
+        throw new Error(`Unknown style id: ${styleID}`);
     }
     return colors;
   }
@@ -51,10 +52,10 @@ class ToggleSwitch extends Component {
         <Switch
           checked={this.state.checked}
           onChange={this.handleChange}
-          onColor={this.getStyle(this.props.style).onColor}
-          onHandleColor={this.getStyle(this.props.style).onHandleColor}
-          offColor={this.getStyle(this.props.style).offColor}
-          offHandleColor={this.getStyle(this.props.style).offHandleColor}
+          onColor={this.getStyle(this.props.styleID).onColor}
+          onHandleColor={this.getStyle(this.props.styleID).onHandleColor}
+          offColor={this.getStyle(this.props.styleID).offColor}
+          offHandleColor={this.getStyle(this.props.styleID).offHandleColor}
           handleDiameter={30}
           uncheckedIcon={false}
           checkedIcon={false}
@@ -72,6 +73,7 @@ class ToggleSwitch extends Component {
 ToggleSwitch.propTypes = {
   notifyChangeToggle: PropTypes.func,
   id: PropTypes.string,
-  style: PropTypes.string
+  styleID: PropTypes.string,
+  arrIndex: PropTypes.number
 };
 export default ToggleSwitch;
