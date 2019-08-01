@@ -115,7 +115,7 @@ class Device extends Component {
     ));
 
     return (
-      <div>
+      <React.Fragment>
         <Table>
           <tbody>
             <tr>
@@ -130,7 +130,7 @@ class Device extends Component {
           </tbody>
         </Table>
         <ButtonList>{toggleList}</ButtonList>
-      </div>
+      </React.Fragment>
     );
   }
 }
