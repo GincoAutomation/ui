@@ -1,10 +1,10 @@
 html {
   font-family: 'Verdana', sans-serif;
-  background-color: #f7f7f7;
+  background-color: #1d1e26;
 }
 
 body {
-  margin: 70px auto;
+  margin-top: 150px;
   padding: 0 20px 20px 20px;
-  width: 700px;
+  width: auto;
 }

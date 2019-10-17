@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { clone, setWith } from 'lodash';
-import Room from '../../components/Room/Room';
 import Device from '../../components/Device/Device';
-import Action from '../../components/Action/Action';
 import testHome from '../../data/testHome';
 import styled from 'styled-components';
 //styles
@@ -21,21 +19,10 @@ const Item = styled.div`
   justify-self: stretch;
 `;
 
-class Home extends Component {
+class Devices extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      buttons: {
-        Button1: 0,
-        Button2: 0,
-        Button3: 0
-      },
-      lights: {
-        Blue: 0,
-        Green: 0,
-        Yellow: 0
-      }
-    };
+    this.state = {};
     this.notifyChange = this.notifyChange.bind(this);
   }
 
@@ -108,56 +95,24 @@ class Home extends Component {
     console.log(JSON.stringify(changeInfo));
   }
   render() {
-    const renderCards = () => {
-      var order = 1;
-      const cards = [];
-      //Rooms
-      const roomsArr = Object.values(testHome.rooms);
-      roomsArr.forEach(room => {
-        const r = (
-          <Item key={room.name + '_' + order}>
-            <Room toggles={room.toggles} name={room.name} notifyChange={this.notifyChange}></Room>
-          </Item>
-        );
-        cards.push(r);
-        order++;
-      });
-      //Devices
-      const devArr = Object.values(testHome.devices);
-      devArr.forEach(device => {
-        const d = (
-          <Item key={device.roomName + '_' + device.type + '_' + order}>
-            <Device
-              toggles={device.toggles}
-              name={device.name}
-              roomName={device.roomName}
-              type={device.type}
-              notifyChange={this.notifyChange}
-            ></Device>
-          </Item>
-        );
-        cards.push(d);
-        order++;
-      });
-      //Actions
-      const actArr = Object.values(testHome.actions);
-      actArr.forEach(action => {
-        const a = (
-          <Item key={action.name}>
-            <Action name={action.name} subtext={action.subtext} notifyChange={this.notifyChange}></Action>
-          </Item>
-        );
-        cards.push(a);
-        order++;
-      });
-      return cards;
-    };
     return (
       <div>
-        <Container>{renderCards()}</Container>
+        <Container>
+          {Object.entries(testHome.devices).map(([key, device]) => (
+            <Item key={key}>
+              <Device
+                toggles={device.toggles}
+                name={device.name}
+                roomName={device.roomName}
+                type={device.type}
+                notifyChange={this.notifyChange}
+              ></Device>
+            </Item>
+          ))}
+        </Container>
       </div>
     );
   }
 }
 
-export default Home;
+export default Devices;

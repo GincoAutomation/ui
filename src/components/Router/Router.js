@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from 'react-router-dom';
 
 import Home from '../../pages/Home/Home';
-import Users from '../../pages/Users/Users';
-import About from '../../pages/About/About';
+import Rooms from '../../pages/Rooms/Rooms';
+import Devices from '../../pages/Devices/Devices';
+import Actions from '../../pages/Actions/Actions';
 
 class Router extends Component {
   render() {
     return (
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/users/" component={Users} />
-        <Route path="/about/" component={About} />
+        <Route path="/rooms/" component={Rooms} />
+        <Route path="/devices/" component={Devices} />
+        <Route path="/Actions/" component={Actions} />
       </Switch>
     );
   }
