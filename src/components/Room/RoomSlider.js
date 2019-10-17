@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import PropTypes from 'prop-types';
@@ -34,11 +34,14 @@ const CustomSlider = withStyles({
   }
 })(Slider);
 
-function RoomSlider(props) {
+function RoomSlider({ notifyChangeSlider, id }) {
   const classes = useStyles();
-  const handleChange = (event, newValue) => {
-    props.notifyChangeSlider(props.id, newValue);
-  };
+  const handleChange = useCallback(
+    (event, newValue) => {
+      notifyChangeSlider(id, newValue);
+    },
+    [id, notifyChangeSlider]
+  );
   return (
     <div className={classes.root}>
       <CustomSlider aria-label="Pretto slider" defaultValue={20} onChange={handleChange} min={8} max={45} />
