@@ -18,5 +18,9 @@ class Router extends Component {
     );
   }
 }
+/*Router.propTypes = {
+  homeConfig: propTypes.object
+};
+*/
 
 export default Router;
