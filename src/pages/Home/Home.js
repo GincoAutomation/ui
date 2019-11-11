@@ -24,7 +24,14 @@ const Item = styled.div`
 `;
 
 function Home(props) {
-  const { UIconfig, UIState, sendEvent } = useHomeAutomationServer();
+  const { isLoading, config, state, sendEvent } = useHomeAutomationServer();
+  console.log('isLoading', isLoading);
+  console.log('config', config);
+  console.log('state', state);
+  // as long as initial config and state is not loaded yet, show a loading screen
+  if (isLoading) return <p style={{ color: 'red' }}>Still loading initial data</p>;
+  // else show the tiles
+  return <button onClick={() => sendEvent({ type: 'stateChange', id: 'abc' })}>Test Event</button>;
   // const [houseConfig, setHouseConfig] = useState({
   //   rooms: {},
   //   devices: {},
@@ -97,7 +104,7 @@ function Home(props) {
     sendEvent(changeInfo);
   };
   const renderCards = () => {
-    const testHome = UIconfig;
+    const testHome = config;
     var order = 1;
     const cards = [];
     //Rooms

@@ -3,12 +3,8 @@ import { useState, useEffect } from 'react';
 let listeners = [];
 let ws = null;
 let state = {
-  UIconfig: {
-    rooms: {},
-    devices: {},
-    actions: {}
-  },
-  UIState: {}
+  config: null,
+  state: null
 };
 
 const sendEvent = event => {
@@ -51,14 +47,14 @@ const openWebsocket = () => {
 const fetchConfig = () => {
   fetch(`/API/homeconfig`)
     .then(res => res.json())
-    .then(result => setState({ UIState: JSON.parse(result) }))
+    .then(result => setState({ config: result }))
     .catch(error => console.error('Error:', error));
 };
 
 const fetchState = () => {
   fetch(`/API/uiState`)
     .then(res => res.json())
-    .then(result => setState({ UIconfig: JSON.parse(result) }))
+    .then(result => setState({ state: result }))
     .catch(error => console.error('Error:', error));
 };
 
@@ -67,8 +63,11 @@ const useHomeAutomationServer = () => {
   useEffect(() => {
     listeners.push(newListener);
     if (!ws) openWebsocket();
+    return () => {
+      listeners = listeners.filter(listener => listener !== newListener);
+    };
   }, [newListener]);
-  return { ...state, sendEvent };
+  return { ...state, isLoading: !state.config || !state.state, sendEvent };
 };
 
 export default useHomeAutomationServer;
