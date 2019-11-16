@@ -36,11 +36,8 @@ const openWebsocket = () => {
     } catch (err) {
       console.log('ws received message is not a json: ', message.data);
     }
-    if (event && event.type === 'stateChange') {
-      // todo logica event van server integreren in state
-      const newUIState = state.UiState;
-      setState({ UIState: newUIState });
-    }
+    // todo logica event van server integreren in state
+    setState({ state: event });
   };
 };
 
@@ -52,7 +49,7 @@ const fetchConfig = () => {
 };
 
 const fetchState = () => {
-  fetch(`/API/uiState`)
+  fetch(`/API/state`)
     .then(res => res.json())
     .then(result => setState({ state: result }))
     .catch(error => console.error('Error:', error));

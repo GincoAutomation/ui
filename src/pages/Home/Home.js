@@ -49,7 +49,7 @@ function Home(props) {
 
   const notifyEvent = event => {
     console.log(JSON.stringify(event));
-    // sendEvent(event);
+    sendEvent(event);
   };
   const renderCards = () => {
     const testHome = config;

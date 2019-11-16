@@ -1,6 +1,6 @@
 /* eslint-env node */
 const proxy = require('http-proxy-middleware');
-let hostName = 'raspberrypi.local';
+let hostName = '192.168.1.44';
 try {
   const config = require('../../server/config/config');
   hostName = config.hostName;

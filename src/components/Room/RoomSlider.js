@@ -47,6 +47,7 @@ function RoomSlider(props) {
       time: Date.now(),
       data: {
         uiID: props.id,
+        type: 'slider',
         oldState: props.state,
         state: newValue,
         client: 'TODO'

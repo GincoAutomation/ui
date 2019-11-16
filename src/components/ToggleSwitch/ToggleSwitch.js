@@ -18,12 +18,12 @@ class ToggleSwitch extends Component {
       time: new Date().toISOString(),
       data: {
         uiID: this.props.id,
-        oldState: this.state.checked,
-        state: !this.state.checked,
+        type: 'toggle',
+        oldState: this.props.state,
+        state: !this.props.state,
         client: 'TODO'
       }
     });
-    this.setState({ checked, toggleCount: this.state.toggleCount + 1 });
   }
   //return the right colors for button component
   getStyle(style) {
@@ -58,7 +58,7 @@ class ToggleSwitch extends Component {
     return (
       <label style={{ float: 'left' }}>
         <Switch
-          checked={this.state.checked}
+          checked={this.props.state}
           onChange={this.handleChange}
           onColor={this.getStyle(this.props.style).onColor}
           onHandleColor={this.getStyle(this.props.style).onHandleColor}
