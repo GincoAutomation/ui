@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { set } from 'lodash';
+//import { set } from 'lodash';
 import ToggleSwitch from '../../components/ToggleSwitch/ToggleSwitch';
 import RoomSlider from './RoomSlider.js';
 import PropTypes from 'prop-types';
@@ -85,50 +85,82 @@ class Room extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleState: Array(this.props.toggles.length).fill(false),
-      temperature: 20,
-      sliderUIcount: 0
+      sliderLables: new Map()
     };
-  }
-  // Change of toggle switch
-  notifyChangeToggle(id, count) {
-    const changeInfo = {
-      room: this.props.name,
-      type: 'toggleEvent',
-      UIName: this.props.toggles[id],
-      value: !this.state.toggleState[id],
-      UICount: count
-    };
-    this.props.notifyChange(changeInfo);
-    var path = 'toggleState[' + id + ']';
-    this.setState(state => set(state, path, !this.state.toggleState[id]));
   }
 
-  // Change of Temperature Slider
-  notifyChangeSlider(id, value) {
-    this.setState({ temperature: value });
-    const changeInfo = {
-      room: this.props.name,
-      type: 'sliderEvent',
-      UIName: 'TempSlider',
-      value: value
-    };
-    this.props.notifyChange(changeInfo);
+  // Change of toggle switch
+  // notifyChangeToggle(id, count) {
+  //   const changeInfo = {
+  //     room: this.props.name,
+  //     type: 'toggleEvent',
+  //     UIName: this.props.toggles[id],
+  //     value: !this.state.toggleState[id],
+  //     UICount: count
+  //   };
+  //   this.props.notifyChange(changeInfo);
+  //   var path = 'toggleState[' + id + ']';
+  //   this.setState(state => set(state, path, !this.state.toggleState[id]));
+  // }
+
+  getInputState(id, type) {
+    if (type == 'toggle') {
+      return this.props.state[id].checked;
+    } else if (type == 'slider') {
+      return this.props.state[id].value;
+    }
+  }
+
+  setLableSlider(id, value) {
+    var sliderMap = new Map();
+    sliderMap = this.state.sliderLables;
+    sliderMap.set(id, value);
+    this.setState({ sliderLables: sliderMap });
+  }
+
+  getLabelSlider(id) {
+    //initialize the values from the state object
+    if (this.state.sliderLables.get(id) == undefined) {
+      var sliderMap = new Map();
+      this.props.inputs.forEach(input => {
+        if (input.type == 'slider') {
+          sliderMap.set(input.id, this.props.state[id].value);
+        }
+      });
+      this.setState({ sliderLables: sliderMap });
+      return sliderMap.get(id);
+    } else {
+      return this.state.sliderLables.get(id);
+    }
   }
 
   render() {
-    const toggles = this.props.toggles;
-    const toggleList = toggles.map((toggle, number) => {
-      return (
-        <Li key={number}>
-          <ToggleSwitch
-            id={number}
-            notifyChangeToggle={(id, count) => this.notifyChangeToggle(id, count)}
-            style="room"
-          />
-          <P className="item">{toggle}</P>
-        </Li>
-      );
+    const inputList = this.props.inputs.map((input, number) => {
+      if (input.type == 'toggle') {
+        return (
+          <Li key={input.id}>
+            <ToggleSwitch
+              id={input.id}
+              notifyEvent={event => this.props.notifyEvent(event)}
+              style="room"
+              state={this.getInputState(input.id, input.type)}
+            />
+            <P className="item">{input.name}</P>
+          </Li>
+        );
+      } else if (input.type == 'slider') {
+        return (
+          <Li key={input.id}>
+            <P className="slider">{input.name + ': ' + this.getLabelSlider(input.id)}</P>
+            <RoomSlider
+              id={input.id}
+              updateLable={(id, value) => this.setLableSlider(id, value)}
+              notifyEvent={event => this.props.notifyEvent(event)}
+              state={this.getInputState(input.id, input.type)}
+            />
+          </Li>
+        );
+      }
     });
     return (
       <div>
@@ -145,21 +177,15 @@ class Room extends Component {
             </tr>
           </tbody>
         </Table>
-        <ButtonList>
-          {toggleList}
-
-          <Li>
-            <P className="slider">{'Verwarming: ' + this.state.temperature + '°C'}</P>
-            <RoomSlider id="TempSlider" notifyChangeSlider={(id, value) => this.notifyChangeSlider(id, value)} />
-          </Li>
-        </ButtonList>
+        <ButtonList>{inputList}</ButtonList>
       </div>
     );
   }
 }
 Room.propTypes = {
-  toggles: PropTypes.array,
+  inputs: PropTypes.array,
   name: PropTypes.string,
-  notifyChange: PropTypes.func
+  notifyEvent: PropTypes.func,
+  state: PropTypes.object
 };
 export default Room;

@@ -6,15 +6,24 @@ class ToggleSwitch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false,
+      checked: this.props.state,
       toggleCount: 0
     };
     this.handleChange = this.handleChange.bind(this);
   }
   //calls notifyChange function on parent
   handleChange(checked) {
+    this.props.notifyEvent({
+      type: 'uiInput',
+      time: new Date().toISOString(),
+      data: {
+        uiID: this.props.id,
+        oldState: this.state.checked,
+        state: !this.state.checked,
+        client: 'TODO'
+      }
+    });
     this.setState({ checked, toggleCount: this.state.toggleCount + 1 });
-    this.props.notifyChangeToggle(this.props.id, this.state.toggleCount);
   }
   //return the right colors for button component
   getStyle(style) {
@@ -70,8 +79,9 @@ class ToggleSwitch extends Component {
   }
 }
 ToggleSwitch.propTypes = {
-  notifyChangeToggle: PropTypes.func,
+  notifyEvent: PropTypes.func,
   id: PropTypes.string,
-  style: PropTypes.string
+  style: PropTypes.string,
+  state: PropTypes.bool
 };
 export default ToggleSwitch;

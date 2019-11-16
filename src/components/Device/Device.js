@@ -84,10 +84,18 @@ class Device extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleState: Array(this.props.toggles.length).fill(false)
+      sliderLables: new Map()
     };
   }
-  // Change of toggle switch
+  getInputState(id, type) {
+    if (type == 'toggle') {
+      console.log(this.props.type);
+      return this.props.state[id].checked;
+    } else if (type == 'slider') {
+      return this.props.state[id].value;
+    }
+  }
+  /*
   notifyChangeToggle(id, count) {
     const changeInfo = {
       room: this.props.roomName,
@@ -100,20 +108,24 @@ class Device extends Component {
     var path = 'toggleState[' + id + ']';
     this.setState(state => set(state, path, !this.state.toggleState[id]));
   }
+*/
 
   render() {
-    const toggles = this.props.toggles;
-    const toggleList = toggles.map((toggle, number) => {
-      return (
-        <Li key={number}>
-          <ToggleSwitch
-            id={number}
-            notifyChangeToggle={(id, count) => this.notifyChangeToggle(id, count)}
-            style="device"
-          />
-          <P className="item">{toggle}</P>
-        </Li>
-      );
+    const inputList = this.props.inputs.map((input, number) => {
+      if (input.type == 'toggle') {
+        return (
+          <Li key={input.id}>
+            <ToggleSwitch
+              id={input.id}
+              notifyEvent={event => this.props.notifyEvent(event)}
+              style="device"
+              state={this.getInputState(input.id, input.type)}
+            />
+            <P className="item">{input.name}</P>
+          </Li>
+        );
+      }
+      //TODO: implement slider input for devices
     });
     return (
       <div>
@@ -130,16 +142,17 @@ class Device extends Component {
             </tr>
           </tbody>
         </Table>
-        <ButtonList>{toggleList}</ButtonList>
+        <ButtonList>{inputList}</ButtonList>
       </div>
     );
   }
 }
 Device.propTypes = {
-  toggles: PropTypes.array,
+  inputs: PropTypes.array,
   name: PropTypes.string,
   roomName: PropTypes.string,
-  notifyChange: PropTypes.func,
-  type: PropTypes.string
+  type: PropTypes.string,
+  notifyEvent: PropTypes.func,
+  state: PropTypes.object
 };
 export default Device;

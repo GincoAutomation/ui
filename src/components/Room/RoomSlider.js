@@ -36,19 +36,40 @@ const CustomSlider = withStyles({
 
 function RoomSlider(props) {
   const classes = useStyles();
-  const [, setValue] = React.useState(20);
-  const handleChange = (event, newValue) => {
+  const [, setValue] = React.useState(props.state);
+  const updateLable = (event, newValue) => {
     setValue(newValue);
-    props.notifyChangeSlider(props.id, newValue);
+    props.updateLable(props.id, newValue);
+  };
+  const sendEvent = (e, newValue) => {
+    props.notifyEvent({
+      type: 'uiInput',
+      time: Date.now(),
+      data: {
+        uiID: props.id,
+        oldState: props.state,
+        state: newValue,
+        client: 'TODO'
+      }
+    });
   };
   return (
     <div className={classes.root}>
-      <CustomSlider aria-label="Pretto slider" defaultValue={20} onChange={handleChange} min={8} max={45} />
+      <CustomSlider
+        aria-label="Pretto slider"
+        defaultValue={props.state}
+        onChange={updateLable}
+        onChangeCommitted={sendEvent}
+        min={8}
+        max={45}
+      />
     </div>
   );
 }
 RoomSlider.propTypes = {
-  notifyChangeSlider: PropTypes.func,
-  id: PropTypes.string
+  notifyEvent: PropTypes.func,
+  updateLable: PropTypes.func,
+  id: PropTypes.string,
+  state: PropTypes.number
 };
 export default RoomSlider;
